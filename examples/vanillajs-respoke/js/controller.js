@@ -12,6 +12,7 @@
 		var that = this;
 		that.model = model;
 		that.view = view;
+    //that.todo = null;
  
     that.client = new respoke.createClient({
         appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
@@ -26,19 +27,43 @@
       console.log('Respoke.IO: Connected');
     });
     
-    that.client.listen('message', function(e) {
-      console.log('message');
-      var title = e.message.message;
+    that.client.listen('message', function(e) {      
+      var message = e.message.message;
       
-      that.addItem(title);
+      var messageTypes = {
+        'newTodo': function(message) {
+          that.addItem(message.title, message.id);
+        },
+        
+        'itemEdit': function() {
+        },
+        
+        'itemEditDone': function() {
+        },
+        
+        'itemEditCancel': function() {
+        },
+        
+        'itemRemove': function() {
+        },
+        
+        'itemToggle': function() {
+        },
+        
+        'removeCompleted': function() {
+        },
+        
+        'toggleAll': function() {
+        }
+      }[message.type](message);
+      
     });
     
 		that.view.bind('newTodo', function (title) {
+      var todo = that.addItem(title);
+      
       var recipient = that.client.getEndpoint({ id: that.model.storage._dbName });
-      
-      recipient.sendMessage({ message : title });
-      
-			//that.addItem(title);
+      recipient.sendMessage({message: {title: title, 'id': todo.id, type: 'newTodo'}});
 		});
 
 		that.view.bind('itemEdit', function (item) {
@@ -116,17 +141,20 @@
 	 * An event to fire whenever you want to add an item. Simply pass in the event
 	 * object and it'll handle the DOM insertion and saving of the new item.
 	 */
-	Controller.prototype.addItem = function (title) {
+	Controller.prototype.addItem = function (title, id) {
 		var that = this;
 
 		if (title.trim() === '') {
 			return;
 		}
 
-		that.model.create(title, function () {
+		that.model.create(title, id, function (todo) {
+      that.todo = todo;
 			that.view.render('clearNewTodo');
-			that._filter(true);
+			that._filter(true);;
 		});
+    
+    return that.todo;
 	};
 
 	/*

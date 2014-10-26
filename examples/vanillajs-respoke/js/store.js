@@ -74,14 +74,19 @@
 	 * @param {function} callback The callback to fire after saving
 	 * @param {number} id An optional param to enter an ID of an item to update
 	 */
-	Store.prototype.save = function (updateData, callback, id) {
+	Store.prototype.save = function (updateData, id, callback) {
+    var that = this;
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
 
 		callback = callback || function () {};
+    
+    that.find({id: id}, function (data) {
+      that.results = data;
+    });
 
 		// If an ID was actually given, find the item and update each property
-		if (id) {
+		if (that.results.length > 0) {
 			for (var i = 0; i < todos.length; i++) {
 				if (todos[i].id === id) {
 					for (var key in updateData) {
@@ -99,7 +104,7 @@
 
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);
-			callback.call(this, [updateData]);
+			callback.call(this, updateData);
 		}
 	};
 

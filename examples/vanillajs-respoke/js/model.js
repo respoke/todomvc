@@ -17,7 +17,7 @@
 	 * @param {string} [title] The title of the task
 	 * @param {function} [callback] The callback to fire after the model is created
 	 */
-	Model.prototype.create = function (title, callback) {
+	Model.prototype.create = function (title, id, callback) {
 		title = title || '';
 		callback = callback || function () {};
 
@@ -26,7 +26,7 @@
 			completed: false
 		};
 
-		this.storage.save(newItem, callback);
+		this.storage.save(newItem, id, callback);
 	};
 
 	/**
@@ -68,7 +68,7 @@
 	 * @param {function} callback The callback to fire when the update is complete.
 	 */
 	Model.prototype.update = function (id, data, callback) {
-		this.storage.save(data, callback, id);
+		this.storage.save(data, id, callback);
 	};
 
 	/**
