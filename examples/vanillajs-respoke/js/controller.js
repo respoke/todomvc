@@ -12,9 +12,33 @@
 		var that = this;
 		that.model = model;
 		that.view = view;
-
+ 
+    that.client = new respoke.createClient({
+        appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
+        developmentMode: true
+    });
+    
+    that.client.connect({
+      endpointId: that.model.storage._dbName
+    });
+    
+    that.client.listen('connect', function() {
+      console.log('Respoke.IO: Connected');
+    });
+    
+    that.client.listen('message', function(e) {
+      console.log('message');
+      var title = e.message.message;
+      
+      that.addItem(title);
+    });
+    
 		that.view.bind('newTodo', function (title) {
-			that.addItem(title);
+      var recipient = that.client.getEndpoint({ id: that.model.storage._dbName });
+      
+      recipient.sendMessage({ message : title });
+      
+			//that.addItem(title);
 		});
 
 		that.view.bind('itemEdit', function (item) {
