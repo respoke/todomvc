@@ -12,7 +12,6 @@
 		var that = this;
 		that.model = model;
 		that.view = view;
-    //that.todo = null;
  
     that.client = new respoke.createClient({
         appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
@@ -20,7 +19,7 @@
     });
     
     that.client.connect({
-      endpointId: that.model.storage._dbName
+      endpointId: that.model.getDatabase()
     });
     
     that.client.listen('connect', function() {
@@ -62,7 +61,7 @@
 		that.view.bind('newTodo', function (title) {
       var todo = that.addItem(title);
       
-      var recipient = that.client.getEndpoint({ id: that.model.storage._dbName });
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase()});
       recipient.sendMessage({message: {title: title, 'id': todo.id, type: 'newTodo'}});
 		});
 

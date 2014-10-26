@@ -10,6 +10,14 @@
 	function Model(storage) {
 		this.storage = storage;
 	}
+  
+	/**
+	 * Gets database name used to store model
+	 *
+	 */
+	Model.prototype.getDatabase = function () {
+		return this.storage._dbName;
+	};
 
 	/**
 	 * Creates a new todo model
