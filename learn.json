@@ -1157,11 +1157,11 @@
 		}]
 	},
 	"javascript-respoke": {
-		"name": "Respoke JavaScript WebRTC",
-		"description": "Add real-time voice, video, text, and data features to your website or app using JavaScript, Android or iOS.",
+		"name": "Respoke",
+		"description": "Add realtime voice, video, text, and data features to your website or app using JavaScript, Android or iOS.",
 		"homepage": "respoke.io",
 		"examples": [{
-			"name": "Example",
+			"name": "Respoke + VanillaJS Realtime Example",
 			"url": "examples/vanillajs-respoke"
 		}],
 		"link_groups": [{
