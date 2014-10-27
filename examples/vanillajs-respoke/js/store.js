@@ -78,6 +78,7 @@
     var that = this;
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
+    that.results = [];
 
 		callback = callback || function () {};
     

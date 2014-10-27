@@ -169,7 +169,7 @@
 		that.model.create(title, id, function (todo) {
 			that.todo = todo;
 			that.view.render('clearNewTodo');
-			that._filter(true);;
+			that._filter(true);
 		});
 
 		return that.todo;
