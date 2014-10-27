@@ -16,7 +16,7 @@
 	 *
 	 */
 	Model.prototype.getDatabase = function () {
-		return this.storage._dbName;
+    return this.storage._dbName;
 	};
 
 	/**

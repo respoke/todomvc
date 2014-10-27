@@ -18,55 +18,55 @@
 			developmentMode: true
 		});
     
-    that.client.connect({
-      endpointId: that.model.getDatabase()
-    });
-    
-    that.client.listen('connect', function() {
-    });
-    
-    that.client.listen('message', function(e) {      
-      var message = e.message.message;
-      
-      var messageTypes = {
-        'newTodo': function(message) {
-          that.addItem(message.title, message.id);
-        },
-        
-        'itemEdit': function() {
-        },
-        
-        'itemEditDone': function(message) {
-          that.editItemSave(message.id, message.title);
-        },
-        
-        'itemEditCancel': function() {
-        },
-        
-        'itemRemove': function(message) {
-          that.removeItem(message.id);
-        },
-        
-        'itemToggle': function(message) {
-          that.toggleComplete(message.id, message.completed);
-        },
-        
-        'removeCompleted': function() {
-          that.removeCompletedItems();
-        },
-        
-        'toggleAll': function(message) {
-          that.toggleAll(message.completed);
-        }
-      }[message.type](message);
-      
-    });
-    
+		that.client.connect({
+			endpointId: that.model.getDatabase()
+		});
+
+		that.client.listen('connect', function() {
+			console.log('Connected to Respoke.');
+		});
+
+		that.client.listen('message', function(e) {      
+			var message = e.message.message;
+
+			var messageTypes = {
+				'newTodo': function(message) {
+					that.addItem(message.title, message.id);
+				},
+
+				'itemEdit': function() {
+				},
+
+				'itemEditDone': function(message) {
+					that.editItemSave(message.id, message.title);
+				},
+
+				'itemEditCancel': function() {
+				},
+
+				'itemRemove': function(message) {
+					that.removeItem(message.id);
+				},
+
+				'itemToggle': function(message) {
+					that.toggleComplete(message.id, message.completed);
+				},
+
+				'removeCompleted': function() {
+					that.removeCompletedItems();
+				},
+
+				'toggleAll': function(message) {
+					that.toggleAll(message.completed);
+				}
+			}[message.type](message);
+		});
+
 		that.view.bind('newTodo', function (title) {
-      var todo = that.addItem(title);
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {id: todo.id, title: title, type: 'newTodo'}});
+			var todo = that.addItem(title);
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {id: todo.id, title: title, type: 'newTodo'}});
 		});
 
 		that.view.bind('itemEdit', function (item) {
@@ -75,9 +75,9 @@
 
 		that.view.bind('itemEditDone', function (todo) {
 			that.editItemSave(todo.id, todo.title);
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {id: todo.id, title: todo.title, type: 'itemEditDone'}});
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {id: todo.id, title: todo.title, type: 'itemEditDone'}});
 		});
 
 		that.view.bind('itemEditCancel', function (item) {
@@ -86,30 +86,30 @@
 
 		that.view.bind('itemRemove', function (todo) {
 			that.removeItem(todo.id);
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {id: todo.id, type: 'itemRemove'}});
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {id: todo.id, type: 'itemRemove'}});
 		});
 
 		that.view.bind('itemToggle', function (todo) {
 			that.toggleComplete(todo.id, todo.completed);
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {id: todo.id, completed: todo.completed, type: 'itemToggle'}});
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {id: todo.id, completed: todo.completed, type: 'itemToggle'}});
 		});
 
 		that.view.bind('removeCompleted', function () {
 			that.removeCompletedItems();
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {type: 'removeCompleted'}});
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {type: 'removeCompleted'}});
 		});
 
 		that.view.bind('toggleAll', function (status) {
 			that.toggleAll(status.completed);
-      
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
-      recipient.sendMessage({message: {completed: status.completed, type: 'toggleAll'}});
+
+			var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+			recipient.sendMessage({message: {completed: status.completed, type: 'toggleAll'}});
 		});
 	}
 
@@ -167,12 +167,12 @@
 		}
 
 		that.model.create(title, id, function (todo) {
-      that.todo = todo;
+			that.todo = todo;
 			that.view.render('clearNewTodo');
 			that._filter(true);;
 		});
-    
-    return that.todo;
+
+		return that.todo;
 	};
 
 	/*
