@@ -44,7 +44,8 @@
         'itemEditCancel': function() {
         },
         
-        'itemRemove': function() {
+        'itemRemove': function(message) {
+          that.removeItem(message.id);
         },
         
         'itemToggle': function() {
@@ -81,8 +82,11 @@
 			that.editItemCancel(item.id);
 		});
 
-		that.view.bind('itemRemove', function (item) {
-			that.removeItem(item.id);
+		that.view.bind('itemRemove', function (todo) {
+			that.removeItem(todo.id);
+      
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {id: todo.id, type: 'itemRemove'}});
 		});
 
 		that.view.bind('itemToggle', function (item) {
