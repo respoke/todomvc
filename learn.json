@@ -1157,8 +1157,8 @@
 		}]
 	},
 	"javascript-respoke": {
-		"name": "Javascript WebRTC with Respoke.IO",
-		"description": "Add live voice, video, text, and data features to your website or app using JavaScript, Android or iOS.",
+		"name": "Respoke JavaScript WebRTC",
+		"description": "Add real-time voice, video, text, and data features to your website or app using JavaScript, Android or iOS.",
 		"homepage": "respoke.io",
 		"examples": [{
 			"name": "Example",
@@ -1167,16 +1167,16 @@
 		"link_groups": [{
 			"heading": "Official Resources",
 			"links": [{
-				"name": "Docs",
+				"name": "Respoke Docs",
 				"url": "https://docs.respoke.io/"
 			}, {
-				"name": "API Endpoint",
+				"name": "Respoke API Reference",
+				"url": "https://raml.respoke.io/"
+			}, {
+				"name": "Respoke API Endpoint",
 				"url": "https://api.respoke.io/"
 			}, {
-				"name": "API Reference",
-				"url": "https://api.respoke.io/"
-			}, {
-				"name": "Respoke.IO Blog",
+				"name": "Respoke Blog",
 				"url": "http://blog.respoke.io/"
 			}]
 		}, {
