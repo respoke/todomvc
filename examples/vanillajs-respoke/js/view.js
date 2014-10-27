@@ -77,21 +77,17 @@
 
     View.prototype._editItemDone = function (id, title) {
         var listItem = qs('[data-id="' + id + '"]');
-        
-        console.log(listItem);
-        console.log(id, title);
 
         if (!listItem) {
             return;
         }
 
         var input = qs('input.edit', listItem);
-        console.log(input);
+
         if(input) {
           listItem.removeChild(input);
         }
         
-
         listItem.className = listItem.className.replace('editing', '');
 
         qsa('label', listItem).forEach(function (label) {

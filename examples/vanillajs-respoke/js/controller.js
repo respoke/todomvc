@@ -55,7 +55,8 @@
         'removeCompleted': function() {
         },
         
-        'toggleAll': function() {
+        'toggleAll': function(message) {
+          that.toggleAll(message.completed);
         }
       }[message.type](message);
       
@@ -103,6 +104,9 @@
 
 		that.view.bind('toggleAll', function (status) {
 			that.toggleAll(status.completed);
+      
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {completed: status.completed, type: 'toggleAll'}});
 		});
 	}
 

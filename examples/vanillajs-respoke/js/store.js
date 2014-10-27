@@ -86,10 +86,6 @@
     });
 
 		// If an ID was actually given, find the item and update each property
-    console.log('-------------Store.save-------------');
-    console.log(updateData);
-    console.log(id);
-    console.log(that.results);
 		if (that.results.length > 0) {
 			for (var i = 0; i < todos.length; i++) {
 				if (todos[i].id === id) {
