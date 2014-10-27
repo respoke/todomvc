@@ -75,16 +75,16 @@
 	 * @param {number} id An optional param to enter an ID of an item to update
 	 */
 	Store.prototype.save = function (updateData, id, callback) {
-    var that = this;
+		var that = this;
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
-    that.results = [];
+		that.results = [];
 
 		callback = callback || function () {};
     
-    that.find({id: id}, function (data) {
-      that.results = data;
-    });
+		that.find({id: id}, function (data) {
+			that.results = data;
+		});
 
 		// If an ID was actually given, find the item and update each property
 		if (that.results.length > 0) {
