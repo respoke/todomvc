@@ -13,10 +13,10 @@
 		that.model = model;
 		that.view = view;
  
-    that.client = new respoke.createClient({
-        appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
-        developmentMode: true
-    });
+		that.client = new respoke.createClient({
+			appId: '7c15ec35-71a9-457f-8b73-97caf4eb43ca',
+			developmentMode: true
+		});
     
     that.client.connect({
       endpointId: that.model.getDatabase()
