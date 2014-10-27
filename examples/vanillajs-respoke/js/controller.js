@@ -48,7 +48,8 @@
           that.removeItem(message.id);
         },
         
-        'itemToggle': function() {
+        'itemToggle': function(message) {
+          that.toggleComplete(message.id, message.completed);
         },
         
         'removeCompleted': function() {
@@ -89,8 +90,11 @@
       recipient.sendMessage({message: {id: todo.id, type: 'itemRemove'}});
 		});
 
-		that.view.bind('itemToggle', function (item) {
-			that.toggleComplete(item.id, item.completed);
+		that.view.bind('itemToggle', function (todo) {
+			that.toggleComplete(todo.id, todo.completed);
+      
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {id: todo.id, completed: todo.completed, type: 'itemToggle'}});
 		});
 
 		that.view.bind('removeCompleted', function () {
