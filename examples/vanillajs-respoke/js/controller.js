@@ -23,7 +23,6 @@
     });
     
     that.client.listen('connect', function() {
-      console.log('Respoke.IO: Connected');
     });
     
     that.client.listen('message', function(e) {      
@@ -53,6 +52,7 @@
         },
         
         'removeCompleted': function() {
+          that.removeCompletedItems();
         },
         
         'toggleAll': function(message) {
@@ -100,6 +100,9 @@
 
 		that.view.bind('removeCompleted', function () {
 			that.removeCompletedItems();
+      
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {type: 'removeCompleted'}});
 		});
 
 		that.view.bind('toggleAll', function (status) {
