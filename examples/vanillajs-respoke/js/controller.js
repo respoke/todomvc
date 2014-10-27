@@ -37,7 +37,8 @@
         'itemEdit': function() {
         },
         
-        'itemEditDone': function() {
+        'itemEditDone': function(message) {
+          that.editItemSave(message.id, message.title);
         },
         
         'itemEditCancel': function() {
@@ -61,16 +62,19 @@
 		that.view.bind('newTodo', function (title) {
       var todo = that.addItem(title);
       
-      var recipient = that.client.getEndpoint({ id: that.model.getDatabase()});
-      recipient.sendMessage({message: {title: title, 'id': todo.id, type: 'newTodo'}});
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {id: todo.id, title: title, type: 'newTodo'}});
 		});
 
 		that.view.bind('itemEdit', function (item) {
 			that.editItem(item.id);
 		});
 
-		that.view.bind('itemEditDone', function (item) {
-			that.editItemSave(item.id, item.title);
+		that.view.bind('itemEditDone', function (todo) {
+			that.editItemSave(todo.id, todo.title);
+      
+      var recipient = that.client.getEndpoint({ id: that.model.getDatabase() });
+      recipient.sendMessage({message: {id: todo.id, title: todo.title, type: 'itemEditDone'}});
 		});
 
 		that.view.bind('itemEditCancel', function (item) {
@@ -142,7 +146,7 @@
 	 */
 	Controller.prototype.addItem = function (title, id) {
 		var that = this;
-
+    
 		if (title.trim() === '') {
 			return;
 		}

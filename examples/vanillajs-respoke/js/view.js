@@ -69,7 +69,7 @@
 
         var input = document.createElement('input');
         input.className = 'edit';
-
+        console.log('_editItem');
         listItem.appendChild(input);
         input.focus();
         input.value = title;
@@ -77,13 +77,20 @@
 
     View.prototype._editItemDone = function (id, title) {
         var listItem = qs('[data-id="' + id + '"]');
+        
+        console.log(listItem);
+        console.log(id, title);
 
         if (!listItem) {
             return;
         }
 
         var input = qs('input.edit', listItem);
-        listItem.removeChild(input);
+        console.log(input);
+        if(input) {
+          listItem.removeChild(input);
+        }
+        
 
         listItem.className = listItem.className.replace('editing', '');
 
