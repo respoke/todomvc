@@ -1178,6 +1178,9 @@
 			}, {
 				"name": "Respoke Blog",
 				"url": "http://blog.respoke.io/"
+			}, {
+				"name": "Respoke on GitHub",
+				"url": "https://github.com/respoke"
 			}]
 		}, {
 			"heading": "Community",
@@ -1186,10 +1189,10 @@
 				"url": "http://community.respoke.io/"
 			}, {
 				"name": "Respoke on Stack Overflow",
-				"url": "http://stackoverflow.com/questions/tagged/respoke"
+				"url": "https://stackoverflow.com/questions/tagged/respoke"
 			}, {
 				"name": "Respoke on Twitter",
-				"url": "http://twitter.com/respoke"
+				"url": "https://twitter.com/respoke"
 			}, {
 				"name": "Respoke Twitter Mentions",
 				"url": "https://twitter.com/hashtag/respoke"
