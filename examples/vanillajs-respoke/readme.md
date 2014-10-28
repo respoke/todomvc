@@ -14,9 +14,10 @@ First install all the application dependencies:
 
 `gulp`
 
-Then open the TodoMVC in two different browser instances. 
+Then open the TodoMVC in two different browser instances. For example, open one instance in Chrome and the second instance in Firefox. Or open one instance in Chrome and the second instance in Chrome incognito.
 
-For example, open one instance in Chrome and the second instance in Firefox. Or open one instance in Chrome and the second instance in Chrome incognito.
+Expect what you type in one browser instance to automagically show up in the second browser instance
+
 
 
 ## Getting Started With Respoke
