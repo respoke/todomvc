@@ -1,6 +1,6 @@
 # Respoke & VanillaJS TodoMVC Example
 
-> Respoke lets you easily integrate text chat, audio calling, video collaboration, screen sharing, and peer-to-peer data transfer without the hassle of maintaining servers and traversing firewalls. Respoke works with just a few lines of JavaScript and is best used in combination with a JavaScript MV* framework such as EmberJS, AngularJS or Backbone.
+> Respoke lets you easily integrate text chat, audio calling, video collaboration, screen sharing, and peer-to-peer data transfer without the hassle of maintaining servers and traversing firewalls. Respoke works with just a few lines of JavaScript and fits well when used in combination with a JavaScript MV* framework such as EmberJS, AngularJS or Backbone.
 
 > _[Respoke - respoke.io](https://www.respoke.io)_
 
@@ -35,7 +35,6 @@ Here are some links you may find helpful:
 Get support from the Respoke team and other Respoke developers:
 
 * [Respoke Community Forum](http://community.respoke.io/)
-* [Respoke on Stack Overflow](http://stackoverflow.com/questions/tagged/respoke)
 * [Respoke on Twitter](https://twitter.com/respoke)
 * [Respoke Twitter Mentions](https://twitter.com/hashtag/respoke)
 
