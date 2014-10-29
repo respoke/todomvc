@@ -6,6 +6,7 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var pagespeed = require('psi');
+var connect = require('gulp-connect');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -85,12 +86,17 @@ gulp.task('html', function () {
     .pipe($.size({title: 'html'}));
 });
 
+// Add HTTP Server
+gulp.task('connect', function() {
+  connect.server();
+});
+
 // Clean Output Directory
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence(['styles', 'copy'], ['jshint', 'html', 'images'], cb);
+  runSequence(['styles', 'copy'], ['jshint', 'html', 'images', 'connect'], cb);
 });
 
 // Run PageSpeed Insights
